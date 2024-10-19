@@ -1,18 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_management/ui/screens/forgot_password_email_screen.dart';
-import 'package:task_management/ui/screens/sign_up_screen.dart';
+import 'package:task_management/ui/screens/forgot_password_otp_screen.dart';
+import 'package:task_management/ui/screens/sign_in_screen.dart';
 import 'package:task_management/ui/utils/app_colors.dart';
 import 'package:task_management/ui/widgets/screen_background.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -24,26 +24,23 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 151),
+                const SizedBox(height: 40),
                 Text(
-                  'Get Stated With',
+                  'Set Password',
                   style: textTheme.displaySmall
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
+                Text(
+                  'Minimum length password 8 character with letter and number combination',
+                  style: textTheme.titleSmall?.copyWith(color: Colors.blueGrey),
+                ),
                 const SizedBox(height: 22),
-                _buildSignInForm(),
+                _buildResetPasswordForm(),
                 const SizedBox(height: 12),
                 Center(
                   child: Column(
                     children: [
-                      TextButton(
-                        onPressed: _onTapForgetPassword,
-                        child: const Text(
-                          'Forget Password?',
-                          style: TextStyle(fontSize: 20, color: Colors.black54),
-                        ),
-                      ),
-                      _buildSignUpSection(),
+                      _buildHaveAccountSection(),
                     ],
                   ),
                 ),
@@ -55,19 +52,19 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _buildSignInForm() {
+  Widget _buildResetPasswordForm() {
     return Column(
       children: [
         TextFormField(
-          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
-            hintText: 'Email',
+            hintText: 'Password',
           ),
         ),
         const SizedBox(height: 22),
         TextFormField(
-          obscureText: true,
-          decoration: const InputDecoration(hintText: 'Password'),
+          decoration: const InputDecoration(
+            hintText: 'Confirm Password',
+          ),
         ),
         const SizedBox(height: 62),
         ElevatedButton(
@@ -78,17 +75,17 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _buildSignUpSection() {
+  Widget _buildHaveAccountSection() {
     return RichText(
       text: TextSpan(
-        text: "Don't have an account? ",
+        text: "Have an account? ",
         style:
             const TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
         children: [
           TextSpan(
-            text: "Sign up",
+            text: "Sign in",
             style: const TextStyle(color: Colors.red, fontSize: 17),
-            recognizer: TapGestureRecognizer()..onTap = _onTapSignUp,
+            recognizer: TapGestureRecognizer()..onTap = _onTapSignIn,
           ),
         ],
       ),
@@ -96,24 +93,17 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _onTapNextButton() {
-    // TODO: implement on tap next button
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+            (_) => false);
+
   }
 
-  void _onTapForgetPassword() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ForgotPasswordEmailScreen(),
-      ),
-    );
-  }
-
-  void _onTapSignUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SignUpScreen(),
-      ),
-    );
+  void _onTapSignIn() {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+        (_) => false);
   }
 }

@@ -81,7 +81,7 @@ class _ForgotPasswordEmailScreenState extends State<ForgotPasswordEmailScreen> {
           TextSpan(
             text: "Sign in",
             style: const TextStyle(color: Colors.red, fontSize: 17),
-            recognizer: TapGestureRecognizer()..onTap = _onTapSignIn,
+            recognizer: TapGestureRecognizer()..onTap = _onTapSignUp,
           ),
         ],
       ),
@@ -97,7 +97,7 @@ class _ForgotPasswordEmailScreenState extends State<ForgotPasswordEmailScreen> {
     );
   }
 
-  void _onTapSignIn() {
+  void _onTapSignUp() {
     Navigator.pop(context);
   }
 }

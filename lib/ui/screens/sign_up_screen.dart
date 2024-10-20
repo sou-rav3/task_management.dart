@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onTapNextButton(){
-    // TODO: implement on tap next button
+    Navigator.pop(context);
   }
 
 

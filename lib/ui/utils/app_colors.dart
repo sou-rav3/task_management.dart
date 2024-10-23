@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color themeColor = Colors.black12;
+  static const Color themeColor = Colors.orange;
 }
